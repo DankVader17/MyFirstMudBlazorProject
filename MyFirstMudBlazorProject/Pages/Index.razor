@@ -15,7 +15,7 @@
 <MudText Typo="Typo.h3" GutterBottom="true">Tasks</MudText>
 <MudText Class="mb-8">Welcome to your new app, powered by MudBlazor!</MudText>
 <MudAlert Severity="Severity.Normal">You can find documentation and examples on our website here: <MudLink Href="https://mudblazor.com" Typo="Typo.body2" Color="Color.Inherit"><b>www.mudblazor.com</b></MudLink></MudAlert>
-
+<br />
 <MudCard Elevation="25">
     <MudCardHeader>
         <CardHeaderContent>
@@ -25,12 +25,13 @@
     <MudCardContent>
         <MudTextField @bind-Value="task.Title" Label="Title" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
         <MudTextField @bind-Value="task.Description" Label="Description" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
-        <MudDatePicker @bind-Value="task.DueDate" Label="Due Date" Variant="Variant.Text" Margin="Margin.Normal"></MudDatePicker>
+        <MudDatePicker @bind-Date="task.DueDate" Label="Due Date" Variant="Variant.Text" Margin="Margin.Normal"></MudDatePicker>
         <MudSelect T="string" @bind-Value="task.Priority" Label="Priority" AnchorOrigin="Origin.BottomCenter">
             <MudSelectItem Value="@("Low")" />
             <MudSelectItem Value="@("Medium")" />
             <MudSelectItem Value="@("High")" />
         </MudSelect>
+        <MudSwitch @bind-Checked="@task.IsComplete" />
         <br />
         <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="Save">Save Task</MudButton>
     </MudCardContent>
@@ -45,12 +46,14 @@
         <MudTh>Description</MudTh>
         <MudTh>Due Date</MudTh>
         <MudTh>Priority</MudTh>
+        <MudTh>Status</MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Title">@context.Title</MudTd>
         <MudTd DataLabel="Description">@context.Description</MudTd>
         <MudTd DataLabel="Due Date">@context.DueDate</MudTd>
         <MudTd DataLabel="Priority">@context.Priority</MudTd>
+        <MudTd DataLabel="Status">@context.IsComplete</MudTd>
         <MudTd DataLabel="">
             <MudFab @onclick="@(()=>Edit(@context.Id))" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
             <MudFab @onclick="@(()=>Delete(@context.Id))" Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
