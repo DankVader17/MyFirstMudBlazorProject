@@ -1,10 +1,15 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Hosting.StaticWebAssets;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 using MudBlazor.Services;
 using MyFirstMudBlazorProject.Data;
+using MyFirstMudBlazorProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("Default")
+    ?? throw new NullReferenceException("No connection string.");
 
 StaticWebAssetsLoader.UseStaticWebAssets(builder.Environment, builder.Configuration);
 
@@ -13,6 +18,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddMudServices();
+builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddDbContext<TaskDbContext>((DbContextOptionsBuilder options) => 
+    options.UseSqlServer(connectionString));
+builder.Services.AddControllersWithViews();
+
+
 
 var app = builder.Build();
 
