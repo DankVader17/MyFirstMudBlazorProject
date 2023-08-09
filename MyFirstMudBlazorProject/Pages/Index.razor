@@ -23,10 +23,11 @@
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardContent>
-        <MudTextField @bind-Value="task.Title" Label="Title" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+        <MudTextField @bind-Value="task.Title" Label="Title" Required="true" RequiredError="Title is required!" @bind-Errors="@errors" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
         <MudTextField @bind-Value="task.Description" Label="Description" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
         <MudDatePicker @bind-Date="task.DueDate" Label="Due Date" Variant="Variant.Text" Margin="Margin.Normal"></MudDatePicker>
         <MudSelect T="string" @bind-Value="task.Priority" Label="Priority" AnchorOrigin="Origin.BottomCenter">
+            <MudSelectItem Value="@("N/A")" />
             <MudSelectItem Value="@("Low")" />
             <MudSelectItem Value="@("Medium")" />
             <MudSelectItem Value="@("High")" />
@@ -47,6 +48,7 @@
         <MudTh>Due Date</MudTh>
         <MudTh>Priority</MudTh>
         <MudTh>Status</MudTh>
+        <MudTh>Edit / Delete</MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Title">@context.Title</MudTd>
@@ -63,6 +65,7 @@
 
 
 @code {
+    private string[] errors = { };
     private MyTask task = new MyTask();
     private List<MyTask> tasks = new List<MyTask>();
     protected override async Task OnInitializedAsync()
