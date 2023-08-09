@@ -35,6 +35,14 @@
         <MudSwitch @bind-Checked="@task.IsComplete" />
         <br />
         <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="Save">Save Task</MudButton>
+        <br />
+        <MudItem xs="12" sm="5">
+                <MudText Typo="Typo.subtitle2">@($"Errors: ({errors.Length})")</MudText>
+                    @foreach (var error in errors)
+                {
+                    <MudText Color="@Color.Error">@error</MudText>
+                }
+        </MudItem>
     </MudCardContent>
 </MudCard>
 <br />
@@ -65,7 +73,7 @@
 
 
 @code {
-    private string[] errors = { };
+    private string[] errors = {};
     private MyTask task = new MyTask();
     private List<MyTask> tasks = new List<MyTask>();
     protected override async Task OnInitializedAsync()
@@ -79,10 +87,17 @@
     }
     private void Save()
     {
-        taskService.SaveTask(task);
-        task = new MyTask();
-        snackbar.Add("Task Saved.", Severity.Success);
-        GetTasks();
+        if (string.IsNullOrWhiteSpace(task.Title))
+        {
+            snackbar.Add("Task Failed.", Severity.Error);
+            return;
+        }
+        else {
+            taskService.SaveTask(task);
+            task = new MyTask();
+            snackbar.Add("Task Saved.", Severity.Success);
+            GetTasks();
+        }
     }
     private void Edit(int id)
     {
