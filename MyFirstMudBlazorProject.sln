@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstMudBlazorProject", "MyFirstMudBlazorProject\MyFirstMudBlazorProject.csproj", "{563C1755-8549-4F39-A7E4-1423383FFB68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstBlazorTestProject", "MyFirstBlazorTestProject\MyFirstBlazorTestProject.csproj", "{EA5B97AD-4D56-471A-A8CF-D522A0973B18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{563C1755-8549-4F39-A7E4-1423383FFB68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{563C1755-8549-4F39-A7E4-1423383FFB68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{563C1755-8549-4F39-A7E4-1423383FFB68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA5B97AD-4D56-471A-A8CF-D522A0973B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA5B97AD-4D56-471A-A8CF-D522A0973B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA5B97AD-4D56-471A-A8CF-D522A0973B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA5B97AD-4D56-471A-A8CF-D522A0973B18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
