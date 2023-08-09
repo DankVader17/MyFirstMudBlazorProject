@@ -92,6 +92,11 @@
             snackbar.Add("Task Failed.", Severity.Error);
             return;
         }
+        else if(task.DueDate < DateTime.Today)
+        {
+            snackbar.Add("Task Failed", Severity.Error);
+            return;
+        }
         else {
             taskService.SaveTask(task);
             task = new MyTask();
